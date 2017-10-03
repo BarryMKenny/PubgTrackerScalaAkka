@@ -1,0 +1,13 @@
+[info] Packaging C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\pubg-tracker-scala_2.12-0.1.jar ...
+[debug] Input file mappings:
+[debug] 	CubeCalculator.class
+[debug] 	  C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\classes\CubeCalculator.class
+[debug] 	CubeCalculator$.class
+[debug] 	  C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\classes\CubeCalculator$.class
+[debug] 	PubgTrackerApp.class
+[debug] 	  C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\classes\PubgTrackerApp.class
+[debug] 	PubgTrackerApp$delayedInit$body.class
+[debug] 	  C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\classes\PubgTrackerApp$delayedInit$body.class
+[debug] 	PubgTrackerApp$.class
+[debug] 	  C:\workspace\PUBG-Tracker-Scala\target\scala-2.12\classes\PubgTrackerApp$.class
+[info] Done packaging.
