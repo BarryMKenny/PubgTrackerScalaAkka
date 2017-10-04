@@ -24,6 +24,7 @@ class PubgTrackerUser(groupId: String, userId: String) extends Actor with ActorL
 
   override def receive: Receive = {
     case PubgTrackerManager.RequestTrackUser(`groupId`, `userId`) =>
+      log.info("Received in user's RequestTrackUser")
       sender() ! PubgTrackerManager.UserRegistered
 
     case PubgTrackerManager.RequestTrackUser(groupId, userId) =>

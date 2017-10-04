@@ -2,9 +2,11 @@ package ky.barry.pubgtracker.group
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import ky.barry.pubgtracker.group.PubgTrackerGroup.{ReplyUserList, RequestAllStats, RequestUserList}
+import ky.barry.pubgtracker.manager.PubgTrackerManager
 import ky.barry.pubgtracker.manager.PubgTrackerManager.RequestTrackUser
 import ky.barry.pubgtracker.query.PubgTrackerGroupQuery
 import ky.barry.pubgtracker.user.PubgTrackerUser
+
 import scala.concurrent.duration._
 
 object PubgTrackerGroup {
@@ -33,6 +35,19 @@ class PubgTrackerGroup(groupId: String) extends Actor with ActorLogging {
   override def postStop(): Unit = log.info("PubgTrackerGroup {} stopped", groupId)
 
   override def receive: Receive = {
+    case "default" =>
+      val apollyonVeyron = context.actorOf(PubgTrackerUser.props(this.groupId,"ApollyonVeyron"))
+      val smorkula = context.actorOf(PubgTrackerUser.props(this.groupId,"Smorkula"))
+      val gillyWilly1 = context.actorOf(PubgTrackerUser.props(this.groupId,"GillyWilly1"))
+      val evilSpaceMantis = context.actorOf(PubgTrackerUser.props(this.groupId,"EvilSpaceMantis"))
+      val trueCold = context.actorOf(PubgTrackerUser.props(this.groupId,"TrueCold"))
+      val conLad = context.actorOf(PubgTrackerUser.props(this.groupId,"Con_Lad"))
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "ApollyonVeyron")
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "Smorkula")
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "GillyWilly1")
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "EvilSpaceMantis")
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "TrueCold")
+      sender() ! PubgTrackerManager.RequestTrackUser("userGroup", "Con_Lad")
     case trackMsg @ RequestTrackUser(`groupId`, _) =>
       userIdToActor.get(trackMsg.userId) match {
         case Some(userActor) =>

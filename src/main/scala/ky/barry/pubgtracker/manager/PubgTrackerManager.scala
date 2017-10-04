@@ -2,7 +2,8 @@ package ky.barry.pubgtracker.manager
 
 import akka.actor.{Actor, ActorLogging, ActorRef, Props, Terminated}
 import ky.barry.pubgtracker.group.PubgTrackerGroup
-import ky.barry.pubgtracker.manager.PubgTrackerManager.RequestTrackUser
+import ky.barry.pubgtracker.manager.PubgTrackerManager.{RequestTrackUser, UserRegistered}
+
 object PubgTrackerManager {
   def props(): Props = Props(new PubgTrackerManager)
 
@@ -19,6 +20,9 @@ class PubgTrackerManager extends Actor with ActorLogging {
   override def postStop(): Unit = log.info("PubgTrackerManager stopped")
 
   override def receive = {
+    case "default" =>
+      val userGroup = context.actorOf(PubgTrackerGroup.props("userGroup"))
+      userGroup ! "default"
     case trackMsg @ RequestTrackUser(groupId, _) =>
       log.info("Received")
       groupIdToUser.get(groupId) match {
@@ -39,6 +43,7 @@ class PubgTrackerManager extends Actor with ActorLogging {
       log.info("User group actor for {} has been terminated", groupId)
       userToGroupId -= groupActor
       groupIdToUser -= groupId
-
+    case UserRegistered =>
+      log.info("In user registered")
   }
 }

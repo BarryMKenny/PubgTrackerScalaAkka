@@ -9,22 +9,11 @@ object PubgTrackerApp extends App {
   val system = ActorSystem("pubg-tracker-system")
 
   val manager = system.actorOf(PubgTrackerManager.props())
-  val group = system.actorOf(PubgTrackerGroup.props("userGroup"))
-  val apollyonVeyron = system.actorOf(PubgTrackerUser.props("userGroup", "ApollyonVeyron"))
-
-  apollyonVeyron ! (PubgTrackerManager.RequestTrackUser("userGroup", "ApollyonVeyron"), apollyonVeyron)
-  apollyonVeyron ! PubgTrackerUser.RecordStats(1,"1")
-  group ! PubgTrackerUser.RecordStats(1,"1")
-
-
-
-
-/**
-  getUserStats("ApollyonVeyron")
-  getUserStats("Smorkula")
-  getUserStats("GillyWilly1")
-  getUserStats("EvilSpaceMantis")
-  getUserStats("TrueCold")
-  getUserStats("Con_Lad")
-  **/
+  manager ! "default"
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "ApollyonVeyron")
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "Smorkula")
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "GillyWilly1")
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "EvilSpaceMantis")
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "TrueCold")
+  //manager ! PubgTrackerManager.RequestTrackUser("userGroup", "Con_Lad")
 }
